@@ -182,13 +182,13 @@ export default function Component() {
     <div className="w-full max-w-8xl mx-auto p-4 space-y-6">
       {/* Header */}
       <div className="w-full border rounded-lg p-4">
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col sm:flex-row gap-2 justify-between sm:items-center">
           <div>
-            <h1 className="text-xl font-semibold">MII Performance Evaluation Report</h1>
+            <h1 className="text-lg sm:text-xl font-semibold">MII Performance Evaluation Report</h1>
             <p className="text-xs text-muted-foreground">Updated on 09:30 at 26/04/2024</p>
           </div>
-          <div className="flex items-center gap-4">
-            <span className="text-sm">Total Score: 3.4/4 (+50% from last testing)</span>
+          <div className="flex flex-col items-start sm:items-end justify-end gap-2">
+            <span className="text-xs sm:text-sm">Total Score: 3.4/4 (+50% from last testing)</span>
             <Button variant="outline" size="sm" className="bg-white">
               <Download className="mr-2 h-4 w-4" />
               Download Now
@@ -206,14 +206,20 @@ export default function Component() {
             </CardHeader>
             <CardContent className="space-y-6">
               {/* Chart Section */}
-              <div className="grid grid-cols-2 gap-4 border rounded-lg p-4">
+              <div className="flex flex-col sm:flex-row border rounded-lg p-2 sm:p-4">
                 {/* Left side - Chart */}
-                <div className="w-full flex justify-center items-center">
+                <div className="w-full sm:w-1/2 flex justify-center items-center mb-6 sm:mb-0">
                   <ChartContainer 
-                    className="w-[300px] h-[300px]"
+                    className="w-[250px] h-[250px] sm:w-[280px] sm:h-[280px]"
                     config={{}}
                   >
-                    <svg width={300} height={300} className="overflow-visible">
+                    <svg 
+                      width="100%" 
+                      height="100%" 
+                      viewBox="0 0 300 300" 
+                      preserveAspectRatio="xMidYMid meet"
+                      className="overflow-visible"
+                    >
                       {/* Reference circles */}
                       {[1, 2, 3, 4].map((score) => (
                         <circle
@@ -280,7 +286,7 @@ export default function Component() {
                 </div>
 
                 {/* Right side - Analysis */}
-                <div className="pl-4 border-l">
+                <div className="w-full sm:w-1/2 border-t sm:border-t-0 sm:border-l pt-4 sm:pt-0 sm:pl-4">
                   {/* Header with title and score - with bottom border */}
                   <div className="pb-4 mb-4 border-b">
                     {/* Title and weightage */}
@@ -463,7 +469,7 @@ export default function Component() {
                   </div>
                 )}
                 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid sm:grid-cols-2 gap-4">
                   {filteredResponses.map((item, index) => (
                     <div
                       key={index}
