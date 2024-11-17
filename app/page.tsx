@@ -1,13 +1,13 @@
 'use client'
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { PieChart, Pie, Cell, Sector } from "recharts"
-import { Download, Upload, ExternalLink, Search } from 'lucide-react'
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { ChartContainer } from "@/components/ui/chart"
+import { Command, CommandEmpty, CommandGroup, CommandItem, CommandList } from "@/components/ui/command"
+import { Input } from "@/components/ui/input"
+import { Download, Search } from 'lucide-react'
 import { useState } from "react"
-import { ChartContainer, ChartTooltip } from "@/components/ui/chart"
-import { Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem } from "@/components/ui/command"
+// import { Sector } from "recharts"
 
 // Sample data for the pie chart
 const data = [
@@ -130,53 +130,53 @@ export default function Component() {
       )
     : responses;
 
-  const renderActiveShape = (props: any) => {
-    const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill, payload } = props;
-    const score = payload.score;
-    const maxRadius = outerRadius + 40; // Maximum radius for score rings
-    const scoreRadius = outerRadius + (score / 4) * 40; // Scale based on score (0-4)
+  // const renderActiveShape = (props: any) => {
+  //   const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill, payload } = props;
+  //   const score = payload.score;
+  //   const maxRadius = outerRadius + 40; // Maximum radius for score rings
+  //   const scoreRadius = outerRadius + (score / 4) * 40; // Scale based on score (0-4)
 
-    return (
-      <g>
-        {/* Score rings (1-4) */}
-        {[1, 2, 3, 4].map((ring) => (
-          <circle
-            key={ring}
-            cx={cx}
-            cy={cy}
-            r={outerRadius + (ring * 40) / 4}
-            fill="none"
-            stroke="#ddd"
-            strokeWidth={1}
-            strokeDasharray="3 3"
-          />
-        ))}
+  //   return (
+  //     <g>
+  //       {/* Score rings (1-4) */}
+  //       {[1, 2, 3, 4].map((ring) => (
+  //         <circle
+  //           key={ring}
+  //           cx={cx}
+  //           cy={cy}
+  //           r={outerRadius + (ring * 40) / 4}
+  //           fill="none"
+  //           stroke="#ddd"
+  //           strokeWidth={1}
+  //           strokeDasharray="3 3"
+  //         />
+  //       ))}
         
-        {/* Active sector */}
-        <Sector
-          cx={cx}
-          cy={cy}
-          innerRadius={innerRadius}
-          outerRadius={scoreRadius}
-          startAngle={startAngle}
-          endAngle={endAngle}
-          fill={fill}
-        />
+  //       {/* Active sector */}
+  //       <Sector
+  //         cx={cx}
+  //         cy={cy}
+  //         innerRadius={innerRadius}
+  //         outerRadius={scoreRadius}
+  //         startAngle={startAngle}
+  //         endAngle={endAngle}
+  //         fill={fill}
+  //       />
         
-        {/* Base sector */}
-        <Sector
-          cx={cx}
-          cy={cy}
-          innerRadius={innerRadius}
-          outerRadius={outerRadius}
-          startAngle={startAngle}
-          endAngle={endAngle}
-          fill={fill}
-          opacity={0.5}
-        />
-      </g>
-    );
-  };
+  //       {/* Base sector */}
+  //       <Sector
+  //         cx={cx}
+  //         cy={cy}
+  //         innerRadius={innerRadius}
+  //         outerRadius={outerRadius}
+  //         startAngle={startAngle}
+  //         endAngle={endAngle}
+  //         fill={fill}
+  //         opacity={0.5}
+  //       />
+  //     </g>
+  //   );
+  // };
 
   return (
     <div className="w-full max-w-8xl mx-auto p-4 space-y-6">
@@ -209,7 +209,10 @@ export default function Component() {
               <div className="grid grid-cols-2 gap-4 border rounded-lg p-4">
                 {/* Left side - Chart */}
                 <div className="w-full flex justify-center items-center">
-                  <ChartContainer className="w-[300px] h-[300px]">
+                  <ChartContainer 
+                    className="w-[300px] h-[300px]"
+                    config={{}}
+                  >
                     <svg width={300} height={300} className="overflow-visible">
                       {/* Reference circles */}
                       {[1, 2, 3, 4].map((score) => (

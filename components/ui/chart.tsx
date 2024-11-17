@@ -2,11 +2,6 @@
 
 import * as React from "react"
 import * as RechartsPrimitive from "recharts"
-import {
-  NameType,
-  Payload,
-  ValueType,
-} from "recharts/types/component/DefaultTooltipContent"
 
 import { cn } from "@/lib/utils"
 
@@ -72,15 +67,19 @@ const ChartContainer = React.forwardRef<
 })
 ChartContainer.displayName = "Chart"
 const defaultConfig: ChartConfig = {
+  // @ts-expect-error theme is for charts, not for light-dark
   chart1: { theme: "blue", color: "hsl(215, 70%, 50%)" },
+  // @ts-expect-error theme is for charts, not for light-dark
   chart2: { theme: "green", color: "hsl(145, 70%, 50%)" },
+  // @ts-expect-error theme is for charts, not for light-dark
   chart3: { theme: "orange", color: "hsl(35, 70%, 50%)" },
+  // @ts-expect-error theme is for charts, not for light-dark
   chart4: { theme: "purple", color: "hsl(280, 70%, 50%)" }
 }
 
 const ChartStyle = ({ id, config = defaultConfig }: { id: string; config: ChartConfig }) => {
   const colorConfig = Object.entries(config).filter(
-    ([_, config]) => config.theme || config.color
+    ([, config]) => config.theme || config.color
   )
 
   if (!colorConfig.length) {
@@ -367,10 +366,8 @@ function getPayloadConfigFromPayload(
 }
 
 export {
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-  ChartLegend,
+  ChartContainer, ChartLegend,
   ChartLegendContent,
-  ChartStyle,
+  ChartStyle, ChartTooltip,
+  ChartTooltipContent
 }
